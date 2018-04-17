@@ -1,0 +1,58 @@
+<% include ../partials/header %>
+<div class="container">
+	<h1 class="text-center mb-4">Sign in your own dev_Ground!</h1>
+	<div class="row justify-content-center">
+		<div class="col-9">
+			<form action="/devgrounds" id="newdevGround" method="POST" class="mb-3">
+				<div class="form-group">
+					<label for="devGroundName">Your dev_Ground Name</label>
+					<input type="text" name="devground[name]" id="devGroundName" placeholder="Code Time Attack" class="form-control">
+				</div>
+				<div class="form-group">
+					<label for="devGroundImageURL">An Image (URL)</label>
+					<input type="url" name="devground[img]" id="devGroundImageURL" placeholder="www.images.com/awesome-image.png" class="form-control">
+				</div>
+				<div class="form-group">
+					<label for="devGroundPrice">Entry fee</label>
+					<input type="number" name="devground[price]" id="devGroundPrice" placeholder="0 or blank will create a Free devGround" class="form-control" min="0" step="0.01">
+				</div>
+				<div class="form-group">
+					<label for="devGroundDescription">A little description</label>
+					<textarea name="devground[description]" id="devGroundDescription" maxlength="1000" placeholder="Time Attack is here, let's see who can build a ..."  class="form-control" ></textarea>
+				</div>	
+				<div class="form-group">
+					<label for="devGroundDescription">Select the location of your dev_Ground</label>
+					<div class="form-row">
+						<div class="col-4">
+							<select id="country" class="custom-select" disabled autocomplete="country-name">
+							</select>
+						</div>
+						<div class="col-4">
+							<select id="state" class="custom-select" autocomplete="address-level1">
+								<option value="" disabled selected>Select a State</option>
+							</select>
+						</div>
+						<div class="col-4">
+							<select id="city" class="custom-select" autocomplete="address-level2">
+								<option value="default" disabled selected>Select a City</option>
+							</select>
+						</div>
+					</div>
+					<div id="map"></div>
+				</div>
+				<input type="hidden" name=devground[lat] class="d-none" id="devGroundLat">	
+				<input type="hidden" name=devground[lng] class="d-none" id="devGroundLng">	
+				<button type="submit" class="btn btn-primary btn-block">Submit</button>
+				<a href="/devgrounds">Go Back</a>
+			</form>
+		</div>
+	</div>
+</div>
+
+ <script src="/geonames/admin1CodesASCII.js"></script>
+ <script src="/geonames/cities15000.js"></script>
+ <script src="/js/devGroundNew.js"></script>
+ <script type="text/javascript" src="https://geoip-db.com/jsonp"></script>
+ <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBCtQJ2e_EvUVbQzj6uxwGh-6A8Qw6MnvY&callback=initMap" async defer></script>
+
+<% include ../partials/footer %>

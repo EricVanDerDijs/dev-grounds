@@ -1,0 +1,30 @@
+<% include ../partials/header %>
+<div class="container">
+	<h1 class="text-center mb-4">Edit "<%=devground.name%>"</h1>
+	<div class="row justify-content-center">
+		<div class="col-6">
+			<form action="/devgrounds/<%=devground._id%>?_method=PUT" method="POST" class="mb-3">
+				<div class="form-group">
+					<label for="devGroundName">Your dev_Ground Name</label>
+					<input type="text" name="devground[name]" id="devGroundName" value="<%=devground.name%>" class="form-control">
+				</div>
+				<div class="form-group">
+					<label for="devGroundImageURL">An Image (URL)</label>
+					<input type="url" name="devground[img]" id="devGroundImageURL" value="<%=devground.img%>" class="form-control">
+				</div>
+				<div class="form-group">
+					<label for="devGroundPrice">Entry fee</label>
+					<input type="number" name="devground[price]" id="devGroundPrice" value="<%=parseFloat(devground.price)%>" class="form-control" min="0" step="0.01">
+				</div>
+				<div class="form-group">
+					<label for="devGroundDescription">A little description</label>
+					<textarea name="devground[description]" id="devGroundDescription" maxlength="1000" class="form-control" ><%=devground.description%></textarea>
+				</div>		
+				<button type="submit" class="btn btn-primary btn-block">Submit</button>
+				<a href="/devgrounds/<%=devground._id%>">Go Back</a>
+			</form>
+		</div>
+	</div>
+</div>
+
+<% include ../partials/footer %>

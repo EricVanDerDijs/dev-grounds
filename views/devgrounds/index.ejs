@@ -1,0 +1,24 @@
+<% include ../partials/header %>
+<div class="container">
+	<div class="jumbotron">
+		<h1>Welcome to dev_Grounds</h1>
+		<p class="lead">The wider coding comunity in Venezuela</p>
+		<a href="/devgrounds/new" class="btn btn-primary btn-lg">Start a dev_Ground!</a>
+	</div>
+	<div class="row">
+		<% devgrounds.forEach(function(devground) {%>
+			<div class="col-6 col-md-3">
+				<div class="card mb-3">
+					<img src="<%= devground.img %>" class="card-img-top">
+					<div class="card-body">
+						<h5 class="card-title"> <%= devground.name  %> </h3>
+							<a class="btn btn-primary btn-md" href="/devgrounds/<%=devground._id%>">See More</a>
+					</div>
+				</div>
+			</div>
+		<% }); %>
+	</div>
+
+</div>
+<% include ../partials/footer%>
+
