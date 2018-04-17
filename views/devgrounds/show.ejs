@@ -1,7 +1,8 @@
 <% include ../partials/header %>
 <div class="container">
 	<div class="row">
-		<div class="col-md-3">
+		<div class="col-md-3 d-none d-md-block">
+			<h4>Location</h4>	
 			<div id="map">	
 			</div>
 		</div>
@@ -24,6 +25,7 @@
 						<button class="btn btn-danger btn-sm">Delete</button>
 					</form>
 	<% } %>
+					<div id="mapMobile" class="d-md-none"></div>
 				</div>
 			</div>
 			<hr>

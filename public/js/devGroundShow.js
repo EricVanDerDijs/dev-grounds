@@ -28,17 +28,25 @@ function placeMarker(latLng, map) {
 }
 // Itinialize map
 var map,
-    markers = [];
-function initMap() {
-    map = new google.maps.Map(document.getElementById('map'), {
+    mapMobile,
+    markers = [],
+    mapOptions = {
         center: devGroundPos,
         streetViewControl: false,
         mapTypeControl: false,
         zoom: 10
-    });
+    };
+function initMap() {
+    map = new google.maps.Map(document.getElementById('map'), mapOptions);
+    mapMobile = new google.maps.Map(document.getElementById('mapMobile'), mapOptions);
 
     var geocoder = new google.maps.Geocoder;
-    var infowindow = new google.maps.InfoWindow;   
+    var infowindow = new google.maps.InfoWindow({
+        disableAutoPan: true,
+        maxWidth: 120
+    });    
     placeMarker(devGroundPos, map);
     reverseGeocode(geocoder, map, infowindow, markers[0]);
+    placeMarker(devGroundPos, mapMobile);
+    reverseGeocode(geocoder, mapMobile, infowindow, markers[1]);
 }

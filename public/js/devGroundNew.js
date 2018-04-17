@@ -151,7 +151,10 @@ function initMap() {
     var rightControlDiv = document.createElement('div');
     var rightControl = new RightControl(rightControlDiv, map);
     var geocoder = new google.maps.Geocoder;
-    var infowindow = new google.maps.InfoWindow;
+    var infowindow = new google.maps.InfoWindow({
+        disableAutoPan: true,
+        maxWidth: 120
+    });
     
     map.controls[google.maps.ControlPosition.RIGHT].push(rightControlDiv); 
     
