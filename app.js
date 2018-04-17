@@ -5,17 +5,13 @@ var express        = require("express"),
 	bodyParser     = require("body-parser"),
 	methodOverride = require("method-override"),
 	flash          = require("flash"),
-   // LocalStrategy = require("passport-local").Strategy,
-	// DevGround     = require("./models/devGround"),
-	// Comment       = require("./models/comment"),
-	// User          = require("./models/users.js"),
-	// GOOGLE API KEY: AIzaSyBCtQJ2e_EvUVbQzj6uxwGh-6A8Qw6MnvY
-	app           = express(),
-	port          = 3000;
+	app            = express(),
+	port           = process.env.PORT || 3000,
+	dbUrl          = process.env.DB_URL || "mongodb://localhost/devGrounds";
 	// require("./models/seedDB")();
 	
 //DB Config
-mongoose.connect("mongodb://localhost/devGrounds");
+mongoose.connect(dbUrl);
 
 // App Config
 app.set("view engine", "ejs");
