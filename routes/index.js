@@ -1,40 +1,17 @@
-var express       = require("express"),
-	passport      = require("passport"),
-	DevGround     = require("../models/devGround.js"),
-	router        = express.Router();
+var express   = require("express"),
+	controller = require("../controllers/index.js"),
+	router     = express.Router();
 
-require("../config/passport.js")(passport);
+router.route("/signup")
+	.get(controller.renderSignUp)
+	.post(controller.signUp);
 
-router.get("/signup", function(req, res){
-	res.render("signup", {page: req.originalUrl} );
-});
+router.route("/login")
+	.get(controller.renderLogin)
+	.post(controller.login);
 
-router.post("/signup", passport.authenticate("signup",
-	{
-		successRedirect: "/",
-		failureRedirect: "/signup"
-	}
-));
+router.get("/logout", controller.logout);
 
-router.get("/login", function(req, res){
-	res.render("login", { page: req.originalUrl } );
-});
-
-router.post("/login", passport.authenticate("login",
-	{
-		successReturnToOrRedirect: "/",
-		failureRedirect: "/login"
-	}
-));
-
-router.get("/logout", function(req, res){
-	req.flash("success", "You have logged out");
-	req.logout();
-	res.redirect("/");
-});
-
-router.get("/", function(req, res){
-	res.render("landing");
-});
+router.get("/", controller.renderLanding);
 
 module.exports = router;
