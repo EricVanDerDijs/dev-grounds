@@ -12,7 +12,7 @@ var indexRoutesController = {
    signUp: function(req,res, next){
       passport.authenticate("signup",
          {
-            successRedirect: "/",
+            successRedirect: "/devgrounds",
             failureRedirect: "/signup"
          }
       )(req,res,next);
@@ -25,7 +25,7 @@ var indexRoutesController = {
    login: function(req,res, next){
       passport.authenticate("login",
          {
-            successReturnToOrRedirect: "/",
+            successReturnToOrRedirect: "/devgrounds",
             failureRedirect: "/login"
          }
       )(req,res,next);
@@ -34,7 +34,7 @@ var indexRoutesController = {
    logout: function (req, res) {
       req.flash("success", "You have logged out");
       req.logout();
-      res.redirect("/");
+      res.redirect("/devgrounds");
    },
    renderLanding: function (req, res) {
       res.render("landing");

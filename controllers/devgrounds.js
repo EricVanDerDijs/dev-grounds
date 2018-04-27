@@ -89,7 +89,13 @@ var devGrounds = {
    },
    //INDEX - show all devgrounds
    index: function (req, res) {
-      DevGround.find({}, function (err, devGrounds) {
+      let query = {};
+      if (req.query.search){
+            query = { 
+            "name": regex = new RegExp(escapeRegex(req.query.search), 'gi') 
+            }
+      }
+      DevGround.find( query, function (err, devGrounds) {
          if (err) {
             console.log(err);
          } else {
@@ -102,4 +108,9 @@ var devGrounds = {
       });
    }
 }
+
+function escapeRegex(text) {
+      return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
+};
+
 module.exports = devGrounds;

@@ -1,11 +1,26 @@
 <% include ../partials/header %>
 <div class="container">
-	<div class="jumbotron">
+	<div class="jumbotron mb-2">
 		<h1>Welcome to dev_Grounds</h1>
 		<p class="lead">The wider coding comunity in Venezuela</p>
 		<a href="/devgrounds/new" class="btn btn-primary btn-lg">Start a dev_Ground!</a>
 	</div>
+	<form action="/devgrounds" method="GET">
+		<div class="form-row mb-3">
+			<div class="col-11">
+				<input type="text" class="form-control" name="search" placeholder="Looking for a dev_Ground?">
+			</div>
+			<div class="col-1">
+				<input type="submit" class="btn btn-primary" value=">>">
+			</div>
+		</div>
+	</form>
 	<div class="row">
+		<% if (devgrounds.length === 0 ){ %>
+		<div class="col">
+			<h4 class="text-center"><strong>No dev_Grounds match your search parameters</strong></h4>
+		</div>
+		<% } else { %>
 		<% devgrounds.forEach(function(devground) {%>
 			<div class="col-6 col-md-3">
 				<div class="card mb-3">
@@ -17,6 +32,7 @@
 				</div>
 			</div>
 		<% }); %>
+		<% } %>
 	</div>
 
 </div>
