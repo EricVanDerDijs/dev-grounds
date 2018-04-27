@@ -3,15 +3,6 @@ var express       = require("express"),
 	middleware    = require("../middleware"),
 	router        = express.Router({mergeParams: true});
 
-//EDIT - display edit comment form
-router.get("/:commentID/edit", 
-	middleware.isLoggedIn, middleware.checkCommentOwnership, 
-	comments.renderEditForm);
-
-//NEW - display new comment form
-router.get("/new", 
-	middleware.isLoggedIn, comments.renderNewForm);
-
 //UPDATE - Send updated comment to DB
 router.route("/:commentID")
 	.put( middleware.isLoggedIn, middleware.checkCommentOwnership, 

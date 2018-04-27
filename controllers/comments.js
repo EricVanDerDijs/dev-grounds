@@ -3,40 +3,6 @@ var DevGround = require("../models/devGround.js"),
    middleware = require("../middleware");
 
 var comments = {
-   //EDIT - display edit comment form
-   renderEditForm: function (req, res) {
-      //Search the comment's devGround to pass it's name to the Form
-      DevGround.findById(req.params.id, function (err, devGround) {
-         if (err || !devGround) {
-            console.log(err);
-            req.flash("danger", "There has been a problem");
-            res.redirect("back");
-         } else {
-            Comment.findById(req.params.commentID, function (err, comment) {
-               if (err || !comment) {
-                  console.log(err);
-                  req.flash("danger", "There has been a problem");
-                  res.redirect("back");
-               } else {
-                  res.render("comments/edit", { comment: comment, devground: devGround });
-               }
-            });
-         }
-      });
-   },
-   //NEW - display new comment form
-   renderNewForm: function (req, res) {
-      //Search the comment's devGround to pass it's name to the Form
-      DevGround.findById(req.params.id, function (err, devGround) {
-         if (err) {
-            console.log(err);
-            req.flash("danger", "There has been a problem");
-            res.redirect("back");
-         } else {
-            res.render("comments/new", { devground: devGround });
-         }
-      })
-   },
    //UPDATE - Send updated comment to DB
    update: function (req, res) {
       Comment.findByIdAndUpdate(req.params.commentID, req.body.comment, function (err, comment) {

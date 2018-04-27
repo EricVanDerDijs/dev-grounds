@@ -31,11 +31,26 @@
 				</div>
 			</div>
 			<hr>
+<!-- =============COMMENT SECTION=========== -->
+<!-- Collapsable new comment Form -->
 			<div class="card">
 				<div class="card-header">
-					Comments:
-					<a href="/devgrounds/<%=devground._id%>/comments/new" class="btn btn-primary btn-sm float-right">Comment This!</a>
-				</div>	
+					<h4 class="card-title d-inline-block">Comments</h4>
+					<button class="btn btn-primary btn-sm float-right" type="button" data-toggle="collapse" data-target="#newComment">Comment This!</button>
+					<div class="collapse" id="newComment">
+	<% if (!currentUser) { %>
+					<p>You need to be <a href="/login">logged in</a> to comment</p>	
+	<% } else { %>
+					<form action="/devgrounds/<%=devground._id%>/comments" id="newComment" method="POST" class="mb-3">
+						<div class="form-group">
+							<textarea name="comment[text]" maxlength="200" placeholder="Write a comment..."  class="form-control"></textarea>
+						</div>
+						<button type="submit" class="btn btn-primary btn-block">Submit</button>
+					</form>
+	<% } %>
+					</div>
+				</div>
+<!-- Comment List with collapsable edit -->
 				<div class="card-body comment-section">	
 					<div class="list-group list-group-flush">
 	<% devground.comments.forEach(function(comment){ %>
@@ -47,13 +62,21 @@
 								</span>
 							</div>
 							<p class="card-text text-justify"><%= comment.text %></p>
+<!-- Delete and Edit buttons -->		
 	<% if(currentUser && comment.author.id.equals(currentUser._id)) { %>
-							<div>
-								<a href="/devgrounds/<%=devground._id%>/comments/<%=comment._id%>/edit">
-									<button class="btn btn-outline-primary btn-sm">Edit</button>
-								</a>
+							<div class="mb-3">
+								<button class="btn btn-outline-primary btn-sm" type="button" data-toggle="collapse" data-target="#edit<%=comment._id%>">Edit</button>
 								<form action="/devgrounds/<%=devground._id%>/comments/<%=comment._id%>?_method=DELETE" method="POST" class="deleteForm">
 									<button class="btn btn-outline-danger btn-sm">Delete</button>
+								</form>
+							</div>
+<!-- Collapsable Edit Form -->		
+							<div class="collapse" id="edit<%=comment._id%>">
+								<form action="/devgrounds/<%=devground._id%>/comments/<%=comment._id%>?_method=PUT" method="POST">
+									<div class="form-group">
+										<textarea name="comment[text]" maxlength="200" class="form-control"><%=comment.text%></textarea>
+									</div>
+									<button type="submit" class="btn btn-primary btn-block">Submit</button>
 								</form>
 							</div>
 	<% } %>
