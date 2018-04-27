@@ -1,7 +1,7 @@
 var express        = require("express"),
 	mongoose       = require("mongoose"),
 	passport       = require("passport"),
-    session        = require("express-session"),
+   session        = require("express-session"),
 	bodyParser     = require("body-parser"),
 	methodOverride = require("method-override"),
 	flash          = require("flash"),
@@ -18,7 +18,7 @@ app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static(__dirname + '/public'));
 app.use(methodOverride("_method"));
-
+app.locals.moment = require('moment');
 // Passport related Config
 app.use(session({
 	secret: "fortytwo is the answer to everything",

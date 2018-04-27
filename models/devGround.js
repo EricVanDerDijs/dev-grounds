@@ -7,6 +7,7 @@ var devGroundSchema = new mongoose.Schema({
     price: String,
     lat: String,
     lng: String,
+    creationDate: { type: Date, default: Date.now },
     author: {
         id: {
             type: mongoose.Schema.Types.ObjectId,
