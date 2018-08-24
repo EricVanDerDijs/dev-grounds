@@ -1,7 +1,7 @@
 # dev_Grounds
 ### A great place to know people and organize fun coding related activities!
 
-Personal Node.js Web Application Project to put to work my node development knowedge, it was built with:
+Personal Node.js Web Application Project to practice my node knowedge, it was built with:
 
 - Node.js
 - MongoDB / Mongoose
